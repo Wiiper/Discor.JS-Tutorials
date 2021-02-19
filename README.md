@@ -1,5 +1,7 @@
 # Discor.JS-Tutorials
-html lang="en" data-color-mode="light" data-light-theme="light" data-dark-theme="dark">
+
+<!DOCTYPE html>
+<html lang="en" data-color-mode="light" data-light-theme="light" data-dark-theme="dark">
   <head>
     <meta charset="utf-8">
   <link rel="dns-prefetch" href="https://github.githubassets.com">
