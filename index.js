@@ -5,61 +5,7 @@ const clientconfig = require("./config.json");
 const chalk = require('chalk');
 client.config = clientconfig;
 const fs = require('fs')
-const filters = ["3d","bassboost","echo","karaoke","nightcore","vaporwave","flanger"];
 
-const Distube = require("distube");
-
-const distube = new Distube(client, {
-   searchSongs: false,
-   emitNewSongOnly: false,
-   highWaterMark: 1024*1024*64,
-   leaveOnEmpty: true,
-   leaveOnFinish: true,
-   leaveOnStop: true,
-   // youtubeCookie --> prevents ERRORCODE: "429"
-   youtubeDL: true,
-   updateYouTubeDL: true,
-   //customFilters: {"subboost": "asubboost"}
-})
-
-
-
-client.on("ready", () => {
-  console.log(`${client.user.tag} Is now Online and ready to use!`)
-})
-
-client.on("message", (message) => {
-  if(!message.guild){
-    return;
-  }
-  if(message.author.bot) return;
-  //string = "STRINGS ASIHDASJDH ASHDAS" / array = ["1asdasda", "a2sdasdasd", "a3sdawdawdaw", "a4sdasdasd"] / Object = { "key" : "value"  }
-  //console.log(string) //--> STRINGS ASIHDASJDH ASHDAS
-  //console.log(array) //--> ["asdasda", "asdasdasd", "asdawdawdaw", "asdasdasd"]
-  //console.log(array[1]) //--> a2sdasdasd
-  //console.log(Object) //--> { "key" : "value"  }
-  //console.log(Object.key) //--> "value"
-
-  //""!help play" --> "help play" --> ["help", "play"]
-  const args = message.content.slice(client.config.prefix.length).split(" ");
-  //["help", "play"] --> command === "help" && args == ["play"]
-  const command = args.shift();
-
-  if(command === "ping") return message.reply(`${client.ws.ping}ms`)
-
-  else if(command === "play") {
-    distube.play(message, args.join(" ")) //["help", "play"]--> "help play" | .join("&") ["help", "play"]--> "help&play"
-    return;
-  }
-  else if (command === "stop"){
-    distube.stop(message);
-    return message.reply("MUSIC STOPPED")
-  }
-  else if (command === "skip"){
-    distube.skip(message);
-    return message.reply("MUSIC SKIPPED")
-  }
-});
     
 /*
 
